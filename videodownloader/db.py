@@ -32,9 +32,33 @@ def create_db():
 
 def insert_video(data: tuple):
     query = 'INSERT INTO videos VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)'
+    query_data(query,data)
+    print("Video added to the database! ;D")
+
+def insert_channel(data: tuple):
+    query = 'INSERT INTO channels VALUES(?, ?, ?, ?, ?)'
+    query_data(query, data)
+    print("Channel added to the database! ;D")
+
+
+def query_data(query, data):
     conn = sql.connect("youtube.db")
     cursor = conn.cursor()
-    cursor.execute(query, data)
+    cursor.execute(query,data)
+    result = cursor.fetchall()
     conn.commit()
     conn.close()
-    print("Video added to the database! ;D")
+    return result
+
+
+def query_downloaded(id_data):
+    id = {"id": id_data}
+    query= 'SELECT downloaded FROM videos WHERE id = :id'
+    return query_data(query,id)
+
+
+def query_channel(id_data):
+    id = {"id": id_data}
+    query= 'SELECT * FROM channels WHERE id = :id'
+    return query_data(query,id)
+
