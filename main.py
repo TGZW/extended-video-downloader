@@ -47,7 +47,7 @@ class MyLogger:
     def error(self, msg):
         print(msg)
 
-
+# add here downloading of channel thumbnail?
 def video_info_extractor(channel_url):
     ydl_opts = {
         'outtmpl': video_dir + '%(upload_date)s %(uploader)s %(title)s.%(ext)s',
@@ -75,7 +75,7 @@ def video_downloader(url):
         # 'download_archive': 'downloaded.txt',
         # 'match_filter': video_filter,
         'writethumbnail': True,
-        'writedescription': True,
+        'writedescription': True
         # 'progress_hooks': [progress_hook]
         # 'logger': MyLogger()
     }
